@@ -1,0 +1,12 @@
+﻿,Bacterial_spot,Early_blight,Late_blight,Leaf_Mold,Septoria_leaf_spot,Spider_mites Two-spotted_spider_mite,Target_Spot,Tomato_Yellow_Leaf_Curl_Virus,Tomato_mosaic_virus,healthy,powdery_mildew
+Bacterial_spot,240,2,1,0,3,0,2,2,0,0,0
+Early_blight,2,226,8,1,9,1,1,1,0,0,1
+Late_blight,0,14,233,0,0,0,0,0,0,1,2
+Leaf_Mold,0,2,0,245,1,1,0,1,0,0,0
+Septoria_leaf_spot,0,3,2,4,239,0,1,0,1,0,0
+Spider_mites Two-spotted_spider_mite,0,0,0,0,0,244,6,0,0,0,0
+Target_Spot,2,2,2,0,2,5,236,0,0,1,0
+Tomato_Yellow_Leaf_Curl_Virus,3,0,0,0,0,2,0,243,0,1,1
+Tomato_mosaic_virus,0,0,0,0,0,2,0,0,248,0,0
+healthy,0,0,0,0,0,1,0,1,1,247,0
+powdery_mildew,0,0,0,0,0,0,0,0,0,0,250

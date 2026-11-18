@@ -1,0 +1,14 @@
+# Virtual environment & Python cache
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE
+.vscode/
+
+# Dataset (qua lon, >1.4 GB)
+data/
+
+# Model weights (.pth co file >500 MB, vuot gioi han 100 MB cua GitHub)
+results/checkpoints/*.pth
