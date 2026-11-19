@@ -1,0 +1,7 @@
+﻿model,total_params,size_mb,avg_infer_ms,avg_train_sec,total_params_M
+DenseNet121,6965131,26.89,3.922,292.25,6.97
+MobileNetV2,2237963,8.67,3.886,253.49,2.24
+MobileNetV3-Small,1529131,5.88,3.799,254.52,1.53
+ResNet50,23530571,89.97,3.798,272.29,23.53
+ShuffleNetV2,1264879,4.89,3.768,255.69,1.26
+VGG16,134305611,512.34,4.356,346.4,134.31

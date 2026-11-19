@@ -201,7 +201,10 @@ def plot_metric_charts(df: pd.DataFrame):
         "f1_score": ("f1_mean", "f1_std"),
     }
 
-    x_indices = np.arange(len(RATIO_ORDER))
+    plot_ratios = [r for r in RATIO_ORDER if r in df["ratio_str"].unique()]
+    if not plot_ratios:
+        plot_ratios = RATIO_ORDER
+    x_indices = np.arange(len(plot_ratios))
 
     # 1. Vẽ từng biểu đồ riêng biệt (Line Chart & Bar Chart) cho mỗi chỉ số
     for idx_m, (metric_col, info) in enumerate(METRICS_INFO.items()):
@@ -213,7 +216,7 @@ def plot_metric_charts(df: pd.DataFrame):
             sub = stats_df[stats_df["model"] == model_name]
             means = []
             stds = []
-            for r_str in RATIO_ORDER:
+            for r_str in plot_ratios:
                 row = sub[sub["ratio_str"] == r_str]
                 if not row.empty:
                     means.append(float(row[mean_col].values[0]))
@@ -236,7 +239,7 @@ def plot_metric_charts(df: pd.DataFrame):
             )
 
         ax.set_title(
-            f"Biểu đồ so sánh {info['vn_title']}\ntheo 4 tỷ lệ phân chia dữ liệu (Trung bình ± SD qua 3 lần chạy)",
+            f"Biểu đồ so sánh {info['vn_title']}\ntheo {len(plot_ratios)} tỷ lệ phân chia dữ liệu (Trung bình ± SD)",
             fontsize=12,
             fontweight="bold",
             pad=12,
@@ -244,7 +247,7 @@ def plot_metric_charts(df: pd.DataFrame):
         ax.set_xlabel("Tỷ lệ dữ liệu Training / Validation / Testing (%)", fontsize=11, fontweight="bold")
         ax.set_ylabel(f"Giá trị trung bình {info['title']} (%)", fontsize=11, fontweight="bold")
         ax.set_xticks(x_indices)
-        ax.set_xticklabels([f"{r}\n(TN{i+1})" for i, r in enumerate(RATIO_ORDER)], fontsize=10)
+        ax.set_xticklabels([f"{r}\n(TN{i+1})" for i, r in enumerate(plot_ratios)], fontsize=10)
         ax.grid(True, linestyle="--", alpha=0.6)
         ax.legend(title="Phương pháp DCNN", loc="best", frameon=True, fontsize=9.5)
         plt.tight_layout()
@@ -261,7 +264,7 @@ def plot_metric_charts(df: pd.DataFrame):
             sub = stats_df[stats_df["model"] == model_name]
             means = []
             stds = []
-            for r_str in RATIO_ORDER:
+            for r_str in plot_ratios:
                 row = sub[sub["ratio_str"] == r_str]
                 if not row.empty:
                     means.append(float(row[mean_col].values[0]))
@@ -285,7 +288,7 @@ def plot_metric_charts(df: pd.DataFrame):
             )
 
         ax.set_title(
-            f"Biểu đồ cột so sánh {info['vn_title']}\ntheo 4 tỷ lệ phân chia dữ liệu (Trung bình ± SD qua 3 lần chạy)",
+            f"Biểu đồ cột so sánh {info['vn_title']}\ntheo {len(plot_ratios)} tỷ lệ phân chia dữ liệu (Trung bình ± SD)",
             fontsize=12,
             fontweight="bold",
             pad=12,
@@ -293,7 +296,7 @@ def plot_metric_charts(df: pd.DataFrame):
         ax.set_xlabel("Tỷ lệ dữ liệu Training / Validation / Testing (%)", fontsize=11, fontweight="bold")
         ax.set_ylabel(f"Giá trị trung bình {info['title']} (%)", fontsize=11, fontweight="bold")
         ax.set_xticks(x_indices)
-        ax.set_xticklabels([f"{r}\n(TN{i+1})" for i, r in enumerate(RATIO_ORDER)], fontsize=10)
+        ax.set_xticklabels([f"{r}\n(TN{i+1})" for i, r in enumerate(plot_ratios)], fontsize=10)
         ax.grid(True, axis="y", linestyle="--", alpha=0.6)
         ax.legend(title="Phương pháp DCNN", bbox_to_anchor=(1.01, 1), loc="upper left", frameon=True)
         plt.tight_layout()
@@ -312,7 +315,7 @@ def plot_metric_charts(df: pd.DataFrame):
             sub = stats_df[stats_df["model"] == model_name]
             means = []
             stds = []
-            for r_str in RATIO_ORDER:
+            for r_str in plot_ratios:
                 row = sub[sub["ratio_str"] == r_str]
                 if not row.empty:
                     means.append(float(row[mean_col].values[0]))
@@ -337,7 +340,7 @@ def plot_metric_charts(df: pd.DataFrame):
         ax.set_xlabel("Tỷ lệ Train/Val/Test (%)")
         ax.set_ylabel(f"{info['title']} (%)")
         ax.set_xticks(x_indices)
-        ax.set_xticklabels(RATIO_ORDER)
+        ax.set_xticklabels(plot_ratios)
         ax.grid(True, linestyle="--", alpha=0.6)
         ax.legend(fontsize=8.5, loc="best")
 

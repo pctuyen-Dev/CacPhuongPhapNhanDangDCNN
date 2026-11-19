@@ -29,7 +29,6 @@ EXPERIMENTS = {
     "TN1": {"train": 0.40, "val": 0.10, "test": 0.50, "ratio_str": "40/10/50"},
     "TN2": {"train": 0.50, "val": 0.10, "test": 0.40, "ratio_str": "50/10/40"},
     "TN3": {"train": 0.60, "val": 0.10, "test": 0.30, "ratio_str": "60/10/30"},
-    "TN4": {"train": 0.70, "val": 0.10, "test": 0.20, "ratio_str": "70/10/20"},
 }
 
 # Số lần chạy độc lập cho mỗi thiết lập thí nghiệm với hạt giống ngẫu nhiên khác nhau

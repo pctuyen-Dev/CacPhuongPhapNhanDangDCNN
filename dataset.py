@@ -202,28 +202,32 @@ def create_dataloaders(
     g.manual_seed(seed)
 
     pin_memory = torch.cuda.is_available()
+    loader_kwargs = {
+        "num_workers": num_workers,
+        "pin_memory": pin_memory,
+        "persistent_workers": num_workers > 0,
+    }
+    if num_workers > 0:
+        loader_kwargs["prefetch_factor"] = 4
 
     train_loader = DataLoader(
         train_dataset,
         batch_size=batch_size,
         shuffle=True,
-        num_workers=num_workers,
-        pin_memory=pin_memory,
         generator=g,
+        **loader_kwargs,
     )
     val_loader = DataLoader(
         val_dataset,
         batch_size=batch_size,
         shuffle=False,
-        num_workers=num_workers,
-        pin_memory=pin_memory,
+        **loader_kwargs,
     )
     test_loader = DataLoader(
         test_dataset,
         batch_size=batch_size,
         shuffle=False,
-        num_workers=num_workers,
-        pin_memory=pin_memory,
+        **loader_kwargs,
     )
 
     split_counts = {
